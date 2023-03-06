@@ -1,0 +1,17 @@
+PROGRAMMER ?= dfu-util
+DFU_USB_ID ?= 0483:df11
+DFU_USE_DFUSE ?= 1
+
+ifneq (,$(filter reset flash flash-only, $(MAKECMDGOALS)))
+  TERM_DELAY = 1
+  TERMDEPS += term-delay
+endif
+
+term-delay:
+	sleep $(TERM_DELAY)
+
+# we use shared STM32 configuration snippets
+INCLUDES += -I$(RIOTBOARD)/common/stm32/include
+
+# Setup of programmer and serial is shared between STM32 based boards
+include $(RIOTMAKE)/boards/stm32.inc.mk

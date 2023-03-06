@@ -1,0 +1,6 @@
+/**
+ * @defgroup    boards_aabadie-pcb aabadie-pcb board support
+ * @ingroup     boards
+ * @brief       Support for the first PCB built by aabadie.
+ *
+ */
