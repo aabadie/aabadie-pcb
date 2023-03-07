@@ -11,20 +11,22 @@ How to build using RIOT
 JLink are required. To access the serial port, you'll also need
 [pyserial](https://pypi.org/project/pyserial/).
 
-1. Clone RIOT:
-  ```
-  git clone https://github.com/RIOT-OS/RIOT.git
-  ```
-
-2. Clone this repository:
+1. Clone this repository:
   ```
   git clone https://github.com/aabadie/aabadie-pcb.git
   ```
 
+2. Clone RIOT in the riot-bsp directory:
+  ```
+  cd aabadie-pcb/riot-bsp
+  git clone https://github.com/RIOT-OS/RIOT.git
+  ```
+
+
 3. In RIOT, use the `EXTERNAL_BOARD_DIRS` variable to specify the location of
    the DotBot port.
    ```
-   EXTERNAL_BOARD_DIRS=$(realpath ./boards) make BOARD=aabadie-bsp -C RIOT/examples/hello-world
+   EXTERNAL_BOARD_DIRS=$(realpath ./boards) make BOARD=aabadie-pcb -C RIOT/examples/hello-world
    ```
 
 Flashing
@@ -34,7 +36,7 @@ The board exposes SWD pins so it can be flashed using JLink. Once pins are
 connected to a JLink programmer, run the following command:
 
 ```
-EXTERNAL_BOARD_DIRS=$(realpath ./boards) PROGRAMMER=jlink make BOARD=aabadie-bsp -C RIOT/examples/hello-world flash
+EXTERNAL_BOARD_DIRS=$(realpath ./boards) PROGRAMMER=jlink make BOARD=aabadie-pcb -C RIOT/examples/hello-world flash
 ```
 
 The board can also be flashed using DFU, which is the default programmer. To switch the
@@ -47,7 +49,7 @@ Manufacturer: STMicroelectronics
 ```
 To flash using DFU, run the following command:
 ```
-EXTERNAL_BOARD_DIRS=$(realpath ./boards) make BOARD=aabadie-bsp -C RIOT/examples/hello-world flash
+EXTERNAL_BOARD_DIRS=$(realpath ./boards) make BOARD=aabadie-pcb -C RIOT/examples/hello-world flash
 ```
 
 Access to stdio
@@ -72,5 +74,5 @@ $ sudo udevadm trigger
 
 Once this is done (once), access RIOT stdio using the `term` target:
 ```
-EXTERNAL_BOARD_DIRS=$(realpath ./boards) make BOARD=aabadie-bsp -C RIOT/examples/hello-world term
+EXTERNAL_BOARD_DIRS=$(realpath ./boards) make BOARD=aabadie-pcb -C RIOT/examples/hello-world term
 ```
